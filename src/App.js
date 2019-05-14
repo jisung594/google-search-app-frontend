@@ -1,8 +1,8 @@
-import React from 'react';
+import React, {Component} from 'react'
 import './App.css';
 import Homepage from './Components/Homepage'
 
-function App() {
+class App extends Component {
   constructor(props) {
     super(props)
 
@@ -12,27 +12,34 @@ function App() {
   }
 
   callAPI() {
-    fetch("http://localhost:9000/testAPI")
+    fetch('http://localhost:9000/testAPI')
       .then(res => res.text())
       .then(res => this.setState({
         apiResponse: res
       }))
+      .catch(err => err)
   }
 
   componentWillMount() {
     this.callAPI();
   }
 
-  return (
-    <div className="App">
-      <header className="App-header">
-        <h2>hi, this is from the APP component (pure React)</h2>
-        <p>line below is the response from API</p>
-        <p>{this.state.apiResponse}</p>
-        <Homepage/>
-      </header>
-    </div>
-  );
+  render() {
+    return (
+      <div className="App">
+        <header className="App-header">
+          <h2>hi, this is from the APP component (pure React)</h2>
+          <p>line below is the response from API</p>
+          <p className="App-intro">{this.state.apiResponse}</p>
+
+          {/*
+          <Homepage/>
+          */}
+
+        </header>
+      </div>
+    )
+  }
 }
 
 export default App;
