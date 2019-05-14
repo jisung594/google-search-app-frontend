@@ -10,7 +10,7 @@ class Homepage extends Component {
       searchTerm: event.target.value
     })
   }
-
+  
   render() {
     return (
       <div>
